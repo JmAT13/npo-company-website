@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>お問い合わせ | NPO法人 GO TO HAPPY LIFE</title>
+    <title>寄付・支援 | NPO法人 GO TO HAPPY LIFE</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
@@ -16,35 +16,43 @@
         nav a { color: #333; font-size: 0.9rem; font-weight: 500; }
         nav a:hover { color: #d32f2f; }
         .nav-btn { background: #d32f2f; color: white !important; padding: 0.7rem 1.5rem; border-radius: 5px; }
-        .page-header { background: #d32f2f; color: white; padding: 8rem 2rem 4rem; text-align: center; margin-top: 60px; }
+        .page-header { background: linear-gradient(rgba(211,47,47,0.9), rgba(211,47,47,0.9)), url('https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=1600') center/cover; color: white; padding: 8rem 2rem 4rem; text-align: center; margin-top: 60px; }
         .page-header h1 { font-size: 2.5rem; margin-bottom: 1rem; }
         .page-header p { font-size: 1.1rem; opacity: 0.95; }
-        .main { max-width: 800px; margin: 0 auto; padding: 3rem 2rem; }
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
-        .contact-card { background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 3px 15px rgba(0,0,0,0.08); text-align: center; }
-        .contact-card .icon { font-size: 2rem; margin-bottom: 0.8rem; }
-        .contact-card h3 { font-size: 1rem; color: #333; margin-bottom: 0.3rem; }
-        .contact-card p { font-size: 0.95rem; color: #666; }
-        .contact-card a { color: #d32f2f; font-weight: bold; }
-        .form-section { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 3px 15px rgba(0,0,0,0.08); }
-        .form-section h2 { font-size: 1.2rem; margin-bottom: 1.5rem; padding-bottom: 0.8rem; border-bottom: 2px solid #eee; }
-        .form-group { margin-bottom: 1.2rem; }
-        .form-group label { display: block; font-size: 0.9rem; font-weight: 500; margin-bottom: 0.4rem; }
-        .form-group .required { color: #d32f2f; font-size: 0.75rem; margin-left: 0.3rem; }
-        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; font-family: inherit; }
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #d32f2f; }
-        .form-group textarea { min-height: 120px; resize: vertical; }
-        .submit-btn { width: 100%; background: #d32f2f; color: white; padding: 1rem; border: none; border-radius: 5px; font-size: 1rem; font-weight: bold; cursor: pointer; }
-        .submit-btn:hover { background: #b71c1c; }
-        .info-section { background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 3px 15px rgba(0,0,0,0.08); margin-top: 2rem; }
-        .info-section h2 { font-size: 1.1rem; margin-bottom: 0.8rem; }
-        .info-section p { font-size: 0.9rem; color: #555; }
-        footer { background: #222; color: white; padding: 2rem; text-align: center; margin-top: 3rem; }
+        .main { max-width: 900px; margin: 0 auto; padding: 3rem 2rem; }
+        .section-title { font-size: 1.4rem; color: #333; margin-bottom: 1.5rem; padding-bottom: 0.8rem; border-bottom: 3px solid #d32f2f; }
+        .donate-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 3rem; }
+        .donate-card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 3px 15px rgba(0,0,0,0.08); }
+        .donate-card-header { background: #d32f2f; color: white; padding: 1.2rem; text-align: center; }
+        .donate-card-header h3 { font-size: 1.2rem; }
+        .donate-card-body { padding: 1.5rem; }
+        .donate-card-body p { font-size: 0.95rem; color: #666; margin-bottom: 1rem; }
+        .donate-btn { display: block; background: #d32f2f; color: white; text-align: center; padding: 1rem; border-radius: 5px; font-weight: bold; }
+        .donate-btn:hover { background: #b71c1c; }
+        .projects { margin-bottom: 3rem; }
+        .project-card { background: white; border-radius: 10px; overflow: hidden; margin-bottom: 1.5rem; box-shadow: 0 3px 15px rgba(0,0,0,0.08); }
+        .project-card-content { display: grid; grid-template-columns: 200px 1fr; }
+        .project-img { height: 150px; background: #ddd; }
+        .project-img img { width: 100%; height: 100%; object-fit: cover; }
+        .project-info { padding: 1.5rem; }
+        .project-info h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .project-info p { font-size: 0.9rem; color: #666; margin-bottom: 1rem; }
+        .progress-bar { background: #eee; height: 8px; border-radius: 4px; margin-bottom: 0.5rem; }
+        .progress-fill { background: #d32f2f; height: 100%; border-radius: 4px; }
+        .project-stats { display: flex; gap: 1.5rem; font-size: 0.85rem; color: #666; }
+        .project-stats strong { color: #d32f2f; }
+        .project-btn { display: inline-block; background: #d32f2f; color: white; padding: 0.6rem 1.5rem; border-radius: 5px; font-size: 0.9rem; margin-top: 1rem; }
+        .project-btn:hover { background: #b71c1c; }
+        .tax-info { background: #fff8e1; border-left: 4px solid #ffc107; padding: 1.2rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem; }
+        .tax-info p { font-size: 0.9rem; color: #666; }
+        footer { background: #222; color: white; padding: 2rem; text-align: center; margin-top: 2rem; }
         footer p { font-size: 0.85rem; color: #888; }
         footer a { color: #d32f2f; }
         @media (max-width: 768px) {
             nav { display: none; }
-            .contact-grid { grid-template-columns: 1fr; }
+            .donate-options { grid-template-columns: 1fr; }
+            .project-card-content { grid-template-columns: 1fr; }
+            .project-img { height: 180px; }
         }
     </style>
 </head>
@@ -61,61 +69,80 @@
         </div>
     </header>
     <section class="page-header">
-        <h1>お問い合わせ</h1>
-        <p>ご質問・ご相談など、お気軽にお問い合わせください</p>
+        <h1>寄付・支援</h1>
+        <p>活動全体への寄付、またはプロジェクトごとのクラウドファンディングで支援できます</p>
     </section>
     <main class="main">
-        <div class="contact-grid">
-            <div class="contact-card">
-                <div class="icon">📧</div>
-                <h3>メール</h3>
-                <p><a href="mailto:info@gthl.or.jp">info@gthl.or.jp</a></p>
+        <h2 class="section-title">支援方法を選ぶ</h2>
+        <div class="donate-options">
+            <div class="donate-card">
+                <div class="donate-card-header"><h3>🔄 毎月の寄付</h3></div>
+                <div class="donate-card-body">
+                    <p>継続的なご支援で、安定した活動を支えます。月額1,000円から。</p>
+                    <a href="#" class="donate-btn">毎月の寄付をする</a>
+                </div>
             </div>
-            <div class="contact-card">
-                <div class="icon">📍</div>
-                <h3>所在地</h3>
-                <p>東京都練馬区</p>
+            <div class="donate-card">
+                <div class="donate-card-header"><h3>💝 今回の寄付</h3></div>
+                <div class="donate-card-body">
+                    <p>任意の金額をその都度ご寄付いただけます。</p>
+                    <a href="#" class="donate-btn">今回の寄付をする</a>
+                </div>
             </div>
         </div>
-        <div class="form-section">
-            <h2>お問い合わせフォーム</h2>
-            <div class="form-group">
-                <label>お問い合わせ種別<span class="required">*必須</span></label>
-                <select>
-                    <option value="">選択してください</option>
-                    <option>活動・事業について</option>
-                    <option>寄付・支援について</option>
-                    <option>ボランティア参加</option>
-                    <option>取材・講演依頼</option>
-                    <option>その他</option>
-                </select>
+        <h2 class="section-title" id="projects">プロジェクトを支援する（クラウドファンディング）</h2>
+        <div class="projects">
+            <div class="project-card">
+                <div class="project-card-content">
+                    <div class="project-img"><img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400" alt="医療支援"></div>
+                    <div class="project-info">
+                        <h3>インド農村部 移動診療車プロジェクト</h3>
+                        <p>医療アクセスが困難な地域へ、移動診療車で医療を届けます。</p>
+                        <div class="progress-bar"><div class="progress-fill" style="width: 65%;"></div></div>
+                        <div class="project-stats">
+                            <span><strong>65%</strong> 達成</span>
+                            <span><strong>¥3,250,000</strong> / ¥5,000,000</span>
+                            <span>残り <strong>30</strong> 日</span>
+                        </div>
+                        <a href="#" class="project-btn">このプロジェクトを支援</a>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label>お名前<span class="required">*必須</span></label>
-                <input type="text" placeholder="山田 太郎">
+            <div class="project-card">
+                <div class="project-card-content">
+                    <div class="project-img"><img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400" alt="災害支援"></div>
+                    <div class="project-info">
+                        <h3>災害時医療キット 1000セット配備</h3>
+                        <p>緊急時に即座に対応できる医療キットを全国に配備します。</p>
+                        <div class="progress-bar"><div class="progress-fill" style="width: 40%;"></div></div>
+                        <div class="project-stats">
+                            <span><strong>40%</strong> 達成</span>
+                            <span><strong>¥800,000</strong> / ¥2,000,000</span>
+                            <span>残り <strong>45</strong> 日</span>
+                        </div>
+                        <a href="#" class="project-btn">このプロジェクトを支援</a>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label>メールアドレス<span class="required">*必須</span></label>
-                <input type="email" placeholder="example@email.com">
+            <div class="project-card">
+                <div class="project-card-content">
+                    <div class="project-img"><img src="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=400" alt="教育"></div>
+                    <div class="project-info">
+                        <h3>医療人材育成 奨学金プログラム</h3>
+                        <p>次世代の医療従事者を育成するための奨学金制度を設立します。</p>
+                        <div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div>
+                        <div class="project-stats">
+                            <span><strong>85%</strong> 達成</span>
+                            <span><strong>¥1,700,000</strong> / ¥2,000,000</span>
+                            <span>残り <strong>10</strong> 日</span>
+                        </div>
+                        <a href="#" class="project-btn">このプロジェクトを支援</a>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label>電話番号</label>
-                <input type="tel" placeholder="03-1234-5678">
-            </div>
-            <div class="form-group">
-                <label>お問い合わせ内容<span class="required">*必須</span></label>
-                <textarea placeholder="お問い合わせ内容をご記入ください"></textarea>
-            </div>
-            <button type="submit" class="submit-btn">送信する</button>
         </div>
-        <div class="info-section">
-            <h2>法人情報</h2>
-            <p>
-                <strong>法人名：</strong>特定非営利活動法人 GO TO HAPPY LIFE<br>
-                <strong>所在地：</strong>東京都練馬区<br>
-                <strong>設立：</strong>2025年<br>
-                <strong>目的：</strong>人々の生命、生活及び尊厳を守り、持続可能で包摂的な社会の実現
-            </p>
+        <div class="tax-info">
+            <p>📋 <strong>税制優遇措置：</strong>当法人への寄付は、寄付金控除の対象となります。確定申告時に所得税・住民税の控除を受けられます。</p>
         </div>
     </main>
     <footer>
