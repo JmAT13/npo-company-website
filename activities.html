@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事業活動 | NPO法人 GO TO HAPPY LIFE</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; line-height: 1.8; color: #333; }
+        a { text-decoration: none; color: inherit; }
+        header { background: #fff; padding: 1rem 2rem; position: fixed; top: 0; width: 100%; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+        .logo { font-size: 1.4rem; font-weight: bold; color: #d32f2f; }
+        .logo span { color: #333; }
+        nav { display: flex; gap: 2rem; align-items: center; }
+        nav a { color: #333; font-size: 0.9rem; font-weight: 500; }
+        nav a:hover { color: #d32f2f; }
+        .nav-btn { background: #d32f2f; color: white !important; padding: 0.7rem 1.5rem; border-radius: 5px; }
+        .page-header { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1600') center/cover; color: white; padding: 8rem 2rem 4rem; text-align: center; margin-top: 60px; }
+        .page-header h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .page-header p { font-size: 1.1rem; opacity: 0.95; }
+        .main { max-width: 1000px; margin: 0 auto; padding: 4rem 2rem; }
+        .activity-card { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid #eee; }
+        .activity-card:nth-child(even) { direction: rtl; }
+        .activity-card:nth-child(even) > * { direction: ltr; }
+        .activity-card:last-child { border-bottom: none; }
+        .activity-img { border-radius: 10px; overflow: hidden; height: 250px; }
+        .activity-img img { width: 100%; height: 100%; object-fit: cover; }
+        .activity-content h3 { font-size: 1.5rem; color: #d32f2f; margin-bottom: 1rem; }
+        .activity-content p { font-size: 1rem; color: #555; margin-bottom: 1rem; }
+        .activity-list { list-style: none; }
+        .activity-list li { padding: 0.3rem 0; padding-left: 1.5rem; position: relative; font-size: 0.95rem; color: #666; }
+        .activity-list li::before { content: "✓"; position: absolute; left: 0; color: #d32f2f; font-weight: bold; }
+        .cta-section { background: #d32f2f; color: white; padding: 3rem; border-radius: 10px; text-align: center; margin-top: 2rem; }
+        .cta-section h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .cta-section p { margin-bottom: 1.5rem; opacity: 0.95; }
+        .cta-section .btn { background: white; color: #d32f2f; padding: 1rem 2rem; border-radius: 5px; font-weight: bold; display: inline-block; }
+        .cta-section .btn:hover { background: #f5f5f5; }
+        footer { background: #222; color: white; padding: 2rem; text-align: center; margin-top: 2rem; }
+        footer p { font-size: 0.85rem; color: #888; }
+        footer a { color: #d32f2f; }
+        @media (max-width: 768px) {
+            nav { display: none; }
+            .activity-card { grid-template-columns: 1fr; }
+            .activity-card:nth-child(even) { direction: ltr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">GO TO <span>HAPPY LIFE</span></a>
+            <nav>
+                <a href="activities.html">事業活動</a>
+                <a href="donate.html">寄付・支援</a>
+                <a href="contact.html">お問い合わせ</a>
+                <a href="donate.html" class="nav-btn">支援する</a>
+            </nav>
+        </div>
+    </header>
+    <section class="page-header">
+        <h1>事業活動</h1>
+        <p>7つの事業分野で、人々の生命と尊厳を守ります</p>
+    </section>
+    <main class="main">
+        <div class="activity-card">
+            <div class="activity-img"><img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600" alt="医療・福祉"></div>
+            <div class="activity-content">
+                <h3>🏥 医療・福祉・在宅支援</h3>
+                <p>地域に根ざした医療・福祉サービスを提供し、在宅での生活を支援します。</p>
+                <ul class="activity-list">
+                    <li>在宅医療サポート</li>
+                    <li>訪問看護・介護支援</li>
+                    <li>地域包括ケア推進</li>
+                </ul>
+            </div>
+        </div>
+        <div class="activity-card">
+            <div class="activity-img"><img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600" alt="災害支援"></div>
+            <div class="activity-content">
+                <h3>🚑 災害・緊急時支援</h3>
+                <p>災害や緊急時における医療及び生活支援を迅速に行います。</p>
+                <ul class="activity-list">
+                    <li>緊急医療チーム派遣</li>
+                    <li>避難所での医療支援</li>
+                    <li>生活物資の配布</li>
+                </ul>
+            </div>
+        </div>
+        <div class="activity-card">
+            <div class="activity-img"><img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600" alt="国際協力"></div>
+            <div class="activity-content">
+                <h3>🌍 国際医療協力</h3>
+                <p>国境を越えた医療協力と人道支援活動を展開します。</p>
+                <ul class="activity-list">
+                    <li>途上国への医療支援</li>
+                    <li>移動診療車プロジェクト</li>
+                    <li>医療インフラ整備</li>
+                </ul>
+            </div>
+        </div>
+        <div class="activity-card">
+            <div class="activity-img"><img src="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=600" alt="教育"></div>
+            <div class="activity-content">
+                <h3>📚 教育・人材育成</h3>
+                <p>次世代を担う人材の育成と研修事業を行います。</p>
+                <ul class="activity-list">
+                    <li>医療従事者研修</li>
+                    <li>奨学金プログラム</li>
+                    <li>地域リーダー育成</li>
+                </ul>
+            </div>
+        </div>
+        <div class="activity-card">
+            <div class="activity-img"><img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=600" alt="地域づくり"></div>
+            <div class="activity-content">
+                <h3>🏘️ 地域づくり・社会基盤</h3>
+                <p>持続可能な地域社会の形成と社会基盤の整備を推進します。</p>
+                <ul class="activity-list">
+                    <li>コミュニティ形成支援</li>
+                    <li>社会インフラ整備</li>
+                    <li>地域活性化プロジェクト</li>
+                </ul>
+            </div>
+        </div>
+        <div class="activity-card">
+            <div class="activity-img"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600" alt="IT活用"></div>
+            <div class="activity-content">
+                <h3>💻 IT・科学技術活用</h3>
+                <p>最新技術を活用した社会課題の解決に取り組みます。</p>
+                <ul class="activity-list">
+                    <li>遠隔医療システム</li>
+                    <li>データ活用による支援最適化</li>
+                    <li>デジタル教育支援</li>
+                </ul>
+            </div>
+        </div>
+        <div class="cta-section">
+            <h2>活動を支援しませんか？</h2>
+            <p>あなたの支援が、私たちの活動を支え、多くの命を救います</p>
+            <a href="donate.html" class="btn">支援方法を見る</a>
+        </div>
+    </main>
+    <footer>
+        <p>© 2025 NPO法人 GO TO HAPPY LIFE | <a href="index.html">トップに戻る</a></p>
+    </footer>
+</body>
+</html>
