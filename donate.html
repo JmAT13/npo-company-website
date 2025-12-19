@@ -452,12 +452,8 @@
 
         // 決済ページへ遷移
         function goToPayment() {
-            // 実際の実装では決済ページへ遷移
-            // 例: window.location.href = `/payment?category=${currentSupport.category}&amount=${currentSupport.amount}`;
-            
-            // デモ用：アラート表示
-            alert(`決済ページへ遷移します\n\n支援先: ${categoryNames[currentSupport.category]}\n金額: ¥${currentSupport.amount.toLocaleString()}\n\n※実際の実装では決済サービス（Stripe、PayPal等）へ遷移します`);
-            closeConfirmModal();
+            // 決済方法選択ページへ遷移
+            window.location.href = `payment.html?category=${currentSupport.category}&amount=${currentSupport.amount}`;
         }
 
         // モーダル外クリックで閉じる
