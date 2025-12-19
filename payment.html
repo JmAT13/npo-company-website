@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>決済方法を選ぶ | NPO法人 GO TO HAPPY LIFE</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        a { text-decoration: none; color: inherit; }
+        header { background: #fff; padding: 1rem 2rem; position: fixed; top: 0; width: 100%; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+        .logo { font-size: 1.4rem; font-weight: bold; color: #d32f2f; }
+        .logo span { color: #333; }
+        nav { display: flex; gap: 2rem; align-items: center; }
+        nav a { color: #333; font-size: 0.9rem; font-weight: 500; }
+        nav a:hover { color: #d32f2f; }
+        .nav-btn { background: #d32f2f; color: white !important; padding: 0.7rem 1.5rem; border-radius: 5px; }
+
+        .main { max-width: 600px; margin: 0 auto; padding: 100px 1.5rem 3rem; }
+        
+        /* 支援内容サマリー */
+        .support-summary { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+        .support-summary-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #eee; }
+        .support-summary-header .icon { font-size: 1.5rem; }
+        .support-summary-header h2 { font-size: 1.1rem; color: #333; }
+        .support-details { display: flex; flex-direction: column; gap: 0.8rem; }
+        .support-row { display: flex; justify-content: space-between; align-items: center; }
+        .support-label { color: #666; font-size: 0.9rem; }
+        .support-value { font-weight: bold; color: #333; }
+        .support-value.category { display: flex; align-items: center; gap: 0.3rem; }
+        .support-value.amount { color: #d32f2f; font-size: 1.4rem; }
+        
+        /* セクションタイトル */
+        .section-title { font-size: 1.2rem; color: #333; margin-bottom: 1rem; font-weight: bold; }
+        
+        /* 決済方法カード */
+        .payment-methods { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
+        
+        .payment-card { background: white; border: 2px solid #e0e0e0; border-radius: 12px; padding: 1.2rem 1.5rem; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 1rem; }
+        .payment-card:hover { border-color: #d32f2f; box-shadow: 0 4px 15px rgba(211,47,47,0.1); }
+        .payment-card.selected { border-color: #d32f2f; background: #fef5f5; }
+        
+        .payment-icon { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: #f5f5f5; border-radius: 10px; font-size: 1.5rem; flex-shrink: 0; }
+        .payment-card.selected .payment-icon { background: #ffebee; }
+        
+        .payment-info { flex: 1; }
+        .payment-name { font-size: 1rem; font-weight: bold; color: #333; margin-bottom: 0.2rem; }
+        .payment-desc { font-size: 0.85rem; color: #666; }
+        
+        .payment-check { width: 24px; height: 24px; border: 2px solid #ddd; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s; }
+        .payment-card.selected .payment-check { background: #d32f2f; border-color: #d32f2f; }
+        .payment-check::after { content: "✓"; color: white; font-size: 0.8rem; font-weight: bold; opacity: 0; transition: opacity 0.3s; }
+        .payment-card.selected .payment-check::after { opacity: 1; }
+        
+        /* ブランドロゴ風アイコン */
+        .brand-icons { display: flex; gap: 0.3rem; margin-top: 0.3rem; }
+        .brand-icons img { height: 20px; opacity: 0.7; }
+        .brand-icons span { font-size: 0.7rem; background: #eee; padding: 0.15rem 0.4rem; border-radius: 3px; color: #666; }
+        
+        /* 注意事項 */
+        .payment-notice { background: #fff8e1; border-left: 3px solid #ffc107; padding: 1rem; border-radius: 0 8px 8px 0; margin-bottom: 1.5rem; }
+        .payment-notice p { font-size: 0.85rem; color: #666; line-height: 1.6; }
+        .payment-notice strong { color: #333; }
+        
+        /* 確定ボタン */
+        .submit-section { position: sticky; bottom: 0; background: linear-gradient(to top, #f5f5f5 80%, transparent); padding: 1.5rem 0; }
+        .submit-btn { width: 100%; background: #d32f2f; color: white; padding: 1.2rem 2rem; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+        .submit-btn:hover { background: #b71c1c; transform: translateY(-2px); box-shadow: 0 5px 20px rgba(211,47,47,0.3); }
+        .submit-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; box-shadow: none; }
+        .submit-btn .arrow { font-size: 1.2rem; }
+        
+        .back-link { text-align: center; margin-top: 1rem; }
+        .back-link a { color: #666; font-size: 0.9rem; }
+        .back-link a:hover { color: #d32f2f; }
+        
+        /* セキュリティバッジ */
+        .security-badge { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 1rem; color: #888; font-size: 0.8rem; }
+        .security-badge .lock-icon { font-size: 1rem; }
+        
+        /* 税制優遇 */
+        .tax-info { background: white; border-radius: 10px; padding: 1rem; margin-bottom: 1.5rem; text-align: center; }
+        .tax-info p { font-size: 0.85rem; color: #666; }
+        .tax-info strong { color: #d32f2f; }
+
+        footer { background: #222; color: white; padding: 2rem; text-align: center; margin-top: 2rem; }
+        footer p { font-size: 0.85rem; color: #888; }
+        footer a { color: #d32f2f; }
+
+        @media (max-width: 768px) {
+            nav { display: none; }
+            .main { padding: 90px 1rem 2rem; }
+            .payment-card { padding: 1rem; }
+            .payment-icon { width: 40px; height: 40px; font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">GO TO <span>HAPPY LIFE</span></a>
+            <nav>
+                <a href="activities.html">事業活動</a>
+                <a href="donate.html">寄付・支援</a>
+                <a href="contact.html">お問い合わせ</a>
+                <a href="donate.html" class="nav-btn">支援する</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- 支援内容サマリー -->
+        <div class="support-summary">
+            <div class="support-summary-header">
+                <span class="icon">🎁</span>
+                <h2>ご支援内容</h2>
+            </div>
+            <div class="support-details">
+                <div class="support-row">
+                    <span class="support-label">支援先</span>
+                    <span class="support-value category" id="summary-category">
+                        <span class="cat-icon">🚑</span> 命を救う
+                    </span>
+                </div>
+                <div class="support-row">
+                    <span class="support-label">金額</span>
+                    <span class="support-value amount" id="summary-amount">¥1,000</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 決済方法選択 -->
+        <h3 class="section-title">決済方法を選ぶ</h3>
+        
+        <div class="payment-methods">
+            <!-- クレジットカード -->
+            <div class="payment-card" data-method="credit" onclick="selectPayment(this)">
+                <div class="payment-icon">💳</div>
+                <div class="payment-info">
+                    <div class="payment-name">クレジットカード</div>
+                    <div class="payment-desc">VISA / Mastercard / JCB / AMEX</div>
+                    <div class="brand-icons">
+                        <span>VISA</span>
+                        <span>Master</span>
+                        <span>JCB</span>
+                        <span>AMEX</span>
+                    </div>
+                </div>
+                <div class="payment-check"></div>
+            </div>
+            
+            <!-- Apple Pay / Google Pay -->
+            <div class="payment-card" data-method="wallet" onclick="selectPayment(this)">
+                <div class="payment-icon">📱</div>
+                <div class="payment-info">
+                    <div class="payment-name">Apple Pay / Google Pay</div>
+                    <div class="payment-desc">スマートフォンで簡単決済</div>
+                    <div class="brand-icons">
+                        <span>Apple Pay</span>
+                        <span>Google Pay</span>
+                    </div>
+                </div>
+                <div class="payment-check"></div>
+            </div>
+            
+            <!-- PayPay -->
+            <div class="payment-card" data-method="paypay" onclick="selectPayment(this)">
+                <div class="payment-icon" style="background: #ff0033; color: white; font-size: 0.8rem; font-weight: bold;">Pay</div>
+                <div class="payment-info">
+                    <div class="payment-name">PayPay</div>
+                    <div class="payment-desc">PayPayアプリで決済</div>
+                </div>
+                <div class="payment-check"></div>
+            </div>
+            
+            <!-- Amazon Pay -->
+            <div class="payment-card" data-method="amazon" onclick="selectPayment(this)">
+                <div class="payment-icon" style="background: #ff9900; color: white;">🛒</div>
+                <div class="payment-info">
+                    <div class="payment-name">Amazon Pay</div>
+                    <div class="payment-desc">Amazonアカウントで決済</div>
+                </div>
+                <div class="payment-check"></div>
+            </div>
+            
+            <!-- コンビニ払い -->
+            <div class="payment-card" data-method="convenience" onclick="selectPayment(this)">
+                <div class="payment-icon">🏪</div>
+                <div class="payment-info">
+                    <div class="payment-name">コンビニ払い</div>
+                    <div class="payment-desc">セブン-イレブン / ローソン / ファミリーマート 等</div>
+                </div>
+                <div class="payment-check"></div>
+            </div>
+            
+            <!-- 銀行振込 -->
+            <div class="payment-card" data-method="bank" onclick="selectPayment(this)">
+                <div class="payment-icon">🏦</div>
+                <div class="payment-info">
+                    <div class="payment-name">銀行振込 / ペイジー</div>
+                    <div class="payment-desc">銀行口座から直接お振込み</div>
+                </div>
+                <div class="payment-check"></div>
+            </div>
+        </div>
+        
+        <!-- 注意事項 -->
+        <div class="payment-notice">
+            <p>
+                <strong>📋 領収書について：</strong>決済完了後、ご登録のメールアドレスに領収書をお送りします。確定申告での寄付金控除にご利用いただけます。
+            </p>
+        </div>
+        
+        <!-- 税制優遇 -->
+        <div class="tax-info">
+            <p>当法人への寄付は <strong>寄付金控除</strong> の対象となります</p>
+        </div>
+        
+        <!-- 確定ボタン -->
+        <div class="submit-section">
+            <button class="submit-btn" id="submitBtn" disabled onclick="proceedToPayment()">
+                <span>決済方法を選択してください</span>
+            </button>
+            
+            <div class="security-badge">
+                <span class="lock-icon">🔒</span>
+                <span>SSL暗号化通信で安全に処理されます</span>
+            </div>
+            
+            <div class="back-link">
+                <a href="donate.html">← 支援内容の選択に戻る</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 NPO法人 GO TO HAPPY LIFE | <a href="index.html">トップに戻る</a></p>
+    </footer>
+
+    <script>
+        // カテゴリ情報
+        const categoryData = {
+            save: { name: '命を救う', icon: '🚑' },
+            life: { name: '生活を支える', icon: '🏠' },
+            structure: { name: '構造を変える', icon: '🔧' },
+            future: { name: '未来を育てる', icon: '🌱' }
+        };
+
+        // 決済方法名
+        const paymentNames = {
+            credit: 'クレジットカード',
+            wallet: 'Apple Pay / Google Pay',
+            paypay: 'PayPay',
+            amazon: 'Amazon Pay',
+            convenience: 'コンビニ払い',
+            bank: '銀行振込 / ペイジー'
+        };
+
+        let selectedPayment = null;
+        let supportInfo = {
+            category: 'save',
+            amount: 1000
+        };
+
+        // URLパラメータから支援情報を取得
+        (function() {
+            const params = new URLSearchParams(location.search);
+            const cat = params.get('category');
+            const amt = params.get('amount');
+            
+            if (cat && categoryData[cat]) {
+                supportInfo.category = cat;
+            }
+            if (amt && parseInt(amt) >= 100) {
+                supportInfo.amount = parseInt(amt);
+            }
+            
+            // 表示を更新
+            updateSummary();
+        })();
+
+        function updateSummary() {
+            const catData = categoryData[supportInfo.category];
+            document.getElementById('summary-category').innerHTML = 
+                `<span class="cat-icon">${catData.icon}</span> ${catData.name}`;
+            document.getElementById('summary-amount').textContent = 
+                `¥${supportInfo.amount.toLocaleString()}`;
+        }
+
+        function selectPayment(card) {
+            // 全てのカードの選択状態をリセット
+            document.querySelectorAll('.payment-card').forEach(c => {
+                c.classList.remove('selected');
+            });
+            
+            // クリックされたカードを選択状態に
+            card.classList.add('selected');
+            selectedPayment = card.dataset.method;
+            
+            // ボタンを有効化
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = false;
+            btn.innerHTML = `<span>¥${supportInfo.amount.toLocaleString()} を支援する</span><span class="arrow">→</span>`;
+        }
+
+        function proceedToPayment() {
+            if (!selectedPayment) return;
+            
+            const catData = categoryData[supportInfo.category];
+            const paymentName = paymentNames[selectedPayment];
+            
+            // 実際の実装では各決済サービスのAPIを呼び出す
+            // 例: Stripe Checkout, PayPay API, Amazon Pay API 等
+            
+            // デモ用：確認アラート
+            const confirmed = confirm(
+                `以下の内容で決済を行います。\n\n` +
+                `支援先: ${catData.icon} ${catData.name}\n` +
+                `金額: ¥${supportInfo.amount.toLocaleString()}\n` +
+                `決済方法: ${paymentName}\n\n` +
+                `※実際の実装では ${paymentName} の決済画面に遷移します。\n\n` +
+                `「OK」を押すと完了画面に進みます（デモ）`
+            );
+            
+            if (confirmed) {
+                // 完了ページへ遷移
+                location.href = `complete.html?category=${supportInfo.category}&amount=${supportInfo.amount}&method=${selectedPayment}`;
+            }
+        }
+    </script>
+</body>
+</html>
